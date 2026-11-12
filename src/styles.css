@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #111111;
+  --color-paper: #ffffff;
+  --color-mist: #f6f6f6;
+  --color-muted: #5a5a5a;
+  --color-line: #e6e6e6;
+  --color-ok: #2f7d46;
+  --color-ok-soft: #e8f4ec;
+  --radius-card: 2rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .ticker-track,
+    .fade-swap,
+    .menu-rise {
+      animation: none !important;
+    }
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-swap {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ticker-track {
+  animation: ticker 28s linear infinite;
+}
+
+.fade-swap {
+  animation: fade-swap 220ms ease;
+}
+
+.menu-rise {
+  animation: rise 180ms ease;
+}
+
+.tap {
+  transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease;
+}
+
+.tap:active {
+  transform: scale(0.98);
+}
